@@ -17,5 +17,3 @@ API REST simples para gerenciamento de produtos utilizando **Java, Spring Boot, 
 - Buscar produto por ID
 - Atualizar produto
 - Deletar produto
-
-## Estrutura do Projeto
