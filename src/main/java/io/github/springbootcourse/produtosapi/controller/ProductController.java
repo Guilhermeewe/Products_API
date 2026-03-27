@@ -29,16 +29,34 @@ public class ProductController {
         System.out.println("Product insert " + product);
     }
 
+    @GetMapping
+    public List<Products> searchProductByQueryParams(@RequestParam("name") String name ) {
+        return productRepository.findByName(name);
+    }
+
     @GetMapping("/all")
     public List<Products> findAllProducts() {
         return productRepository.findAll();
 
     }
 
-    @GetMapping("{id}")
-    public Products findProductById(@PathVariable String id) {
+    @GetMapping("/{id}")
+    public Products findProductById(@PathVariable("id") String id) {
         return productRepository.findById(id).orElse(null);
     }
 
+    @DeleteMapping("/{id}")
+    public void deleteProductById(@PathVariable("id") String id) {
+        productRepository.deleteById(id);
+    }
+
+    @PutMapping("/{id}")
+    public void updateProductById(@RequestBody Products product,
+                                  @PathVariable("id") String id)
+    {
+        product.setId(id);
+        productRepository.save(product);
+
+    }
 
 }
